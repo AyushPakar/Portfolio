@@ -1,0 +1,322 @@
+/* ============================================ */
+/* MAIN CSS - Tailwind 4 with Layers            */
+/* ============================================ */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+/* Import Fonts */
+
+/* ============================================ */
+/* BASE LAYER: Theme Variables + Global Styles  */
+/* ============================================ */
+@layer base {
+  /* ========================================== */
+  /* 🟢 THEME 1: ZIBAI (Jade, Cream & Gold)     */
+  /* ========================================== */
+  :root,
+  [data-theme="zibai"] {
+    --color-primary: #4b8e7d; /* Soft Jade Green */
+    --color-primary-dark: #3a7265; /* Darker Jade (hover) */
+    --color-secondary: #a1c2b5; /* Muted Sage Green */
+    --color-canvas: #fffdf0; /* Pale Cream */
+    --color-deep: #0d3a2f; /* Deep Forest Jade */
+    --color-accent: #e5c06a; /* Pale Moon Gold */
+    --color-accent-light: #f0d68a; /* Lighter Gold */
+    --color-surface: #ffffff; /* Card/White */
+
+    --shadow-sm: 0 2px 8px rgba(13, 58, 47, 0.06);
+    --shadow-md: 0 4px 20px rgba(13, 58, 47, 0.1);
+    --shadow-lg: 0 8px 40px rgba(13, 58, 47, 0.14);
+
+    --gradient-hero: linear-gradient(135deg, #4b8e7d 0%, #e5c06a 100%);
+    --gradient-card: linear-gradient(135deg, #a1c2b5 0%, #4b8e7d 100%);
+  }
+
+  /* ========================================== */
+  /* 🔥 THEME 2: MAVUIKA (Fiery Red & Yellow)   */
+  /* ========================================== */
+  [data-theme="mavuika"] {
+    --color-primary: #ce4b39; /* Fiery Crimson */
+    --color-primary-dark: #a83a2b; /* Darker Crimson (hover) */
+    --color-secondary: #e87640; /* Burnt Amber */
+    --color-canvas: #1e1c1a; /* Obsidian Charcoal */
+    --color-deep: #ffffff; /* White (text on dark) */
+    --color-accent: #fff313; /* Sun Bright Yellow */
+    --color-accent-light: #fff569; /* Lighter Yellow */
+    --color-surface: #2a2826; /* Slightly lighter charcoal */
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
+
+    --gradient-hero: linear-gradient(
+      135deg,
+      #ce4b39 0%,
+      #dd633a 50%,
+      #fff313 100%
+    );
+    --gradient-card: linear-gradient(135deg, #dd633a 0%, #ce4b39 100%);
+  }
+
+  /* ========================================== */
+  /* 🕊️ THEME 3: COLUMBINA (Pink, White & Indigo) */
+  /* ========================================== */
+  [data-theme="columbina"] {
+    --color-primary: #dc2f7e; /* Shocking Magenta */
+    --color-primary-dark: #b02565; /* Darker Magenta (hover) */
+    --color-secondary: #aa4d76; /* Muted Rose Pink */
+    --color-canvas: #ffffff; /* Pure Porcelain White */
+    --color-deep: #1f2132; /* Deep Midnight Indigo */
+    --color-accent: #c6d1e2; /* Columbia Angel Blue */
+    --color-accent-light: #d9e1ed; /* Lighter Blue */
+    --color-surface: #f8f6f9; /* Very subtle off-white */
+
+    --shadow-sm: 0 2px 8px rgba(31, 33, 50, 0.05);
+    --shadow-md: 0 4px 20px rgba(31, 33, 50, 0.08);
+    --shadow-lg: 0 8px 40px rgba(31, 33, 50, 0.12);
+
+    --gradient-hero: linear-gradient(135deg, #dc2f7e 0%, #c6d1e2 100%);
+    --gradient-card: linear-gradient(135deg, #aa4d76 0%, #dc2f7e 100%);
+  }
+
+  /* ========================================== */
+  /* GLOBAL BASE STYLES                         */
+  /* ========================================== */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-deep);
+    font-family: "Inter", sans-serif;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-canvas);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-secondary);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-canvas);
+  }
+}
+
+/* ============================================ */
+/* THEME EXTENSION: Map to Tailwind Utilities   */
+/* ============================================ */
+@theme {
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-secondary: var(--color-secondary);
+  --color-canvas: var(--color-canvas);
+  --color-deep: var(--color-deep);
+  --color-accent: var(--color-accent);
+  --color-accent-light: var(--color-accent-light);
+  --color-surface: var(--color-surface);
+
+  --font-heading: "Cinzel", serif;
+  --font-body: "Inter", sans-serif;
+  --font-alt: "Manrope", sans-serif;
+}
+
+/* ============================================ */
+/* COMPONENTS LAYER                            */
+/* ============================================ */
+@layer components {
+  .fontWeight {
+    font-weight: 500;
+  }
+  .lineText {
+    line-height: 0.2;
+  }
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .custom-shape-btn {
+    padding: 14px 32px;
+    background: #111;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+
+    /* shape */
+    clip-path: polygon(
+      8% 0%,
+      82% 0%,
+      100% 50%,
+      82% 100%,
+      28% 100%,
+      20% 88%,
+      0% 88%,
+      14% 50%,
+      0% 12%,
+      20% 12%
+    );
+
+    transition: 0.3s ease;
+  }
+
+  .custom-shape-btn:hover {
+    background: #333;
+    transform: scale(1.03);
+  }
+
+  .shape-box {
+    position: relative;
+    width: 320px;
+    height: 130px;
+    border: 4px solid #000;
+    background: transparent;
+
+    /* outer custom shape */
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%);
+  }
+
+  .arrow-btn {
+    position: absolute;
+    top: 50%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+    width: 110px;
+    height: 50px;
+    background: #fff;
+    border: 4px solid #000;
+    display: block;
+
+    /* arrow shape */
+    clip-path: polygon(
+      0% 25%,
+      45% 25%,
+      45% 0%,
+      100% 50%,
+      45% 100%,
+      45% 75%,
+      0% 75%
+    );
+  }
+
+  .arrow-btn:hover {
+    background: #f3f3f3;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+  }
+  .btn-outline:hover {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .section-title {
+    font-family: "Cinzel", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: center;
+    position: relative;
+  }
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--color-accent);
+    margin: 12px auto 0;
+    border-radius: 2px;
+  }
+
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-secondary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  .card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+  /* Option 1: Keep all hover effects in one place */
+  .nav-link {
+    @apply relative text-deep/60 font-medium py-1 transition-colors duration-200;
+  }
+
+  .nav-link:hover {
+    @apply text-primary;
+  }
+
+  .nav-link-active {
+    @apply text-primary line-through decoration-[3px] decoration-accent;
+  }
+
+  .border-top-down {
+    border-top: solid var(--color-deep) 1px;
+  }
+}
+
+/* ============================================ */
+/* UTILITIES LAYER                             */
+/* ============================================ */
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .lineout {
+    letter-spacing: 0.18em;
+  }
+}
